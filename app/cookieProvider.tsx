@@ -1,4 +1,4 @@
-// src/providers/cookie-provider.tsx
+
 "use client";
 
 import { CookiesProvider } from "react-cookie";

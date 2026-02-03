@@ -50,7 +50,7 @@ export function ManageRecruitersTable({
 }: ManageRecruitersTableProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // ✅ Filter data based on search query
+  //  Filter data based on search query
   const filteredData = data.filter((r) => {
     const query = searchQuery.toLowerCase();
     return (
@@ -118,8 +118,8 @@ export function ManageRecruitersTable({
 
   return (
     <div className="w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-      {/* ✅ Header with Search Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-4 py-3 border-b bg-gradient-to-r from-slate-50 to-blue-50">
+      {/*  Header with Search Bar */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-4 py-3 border-b bg-linear-to-r from-slate-50 to-blue-50">
         <div>
           <h2 className="text-base font-semibold text-gray-900">
             Manage Recruiters
@@ -129,7 +129,7 @@ export function ManageRecruitersTable({
           </p>
         </div>
 
-        {/* ✅ Search Input */}
+        {/*  Search Input */}
         <div className="relative w-full sm:w-72">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
@@ -168,7 +168,7 @@ export function ManageRecruitersTable({
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <Avatar className="h-9 w-9 border border-slate-200">
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-indigo-500 text-white text-xs">
+                      <AvatarFallback className="bg-linear-to-br from-blue-500 to-indigo-500 text-white text-xs">
                         {getInitials(r.name)}
                       </AvatarFallback>
                     </Avatar>

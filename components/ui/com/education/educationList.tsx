@@ -3,30 +3,31 @@
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Plus } from "lucide-react";
 import EducationCard from "./educationCard";
+import { Education } from "@/typeScript/candidate_interface/candidate.interface";
 
 // Define the complete EducationData interface
 
-interface EducationData {
-  _id: string;
-  level: string;
-  boardOrUniversity: string;
-  course: string | null;          
-  specialization?: string | null;  
-  durationFrom: string;     
-  durationTo: string;       
-  marksPercentage?: number; 
-  passingOutYear?: string;
-  grade?: string;
-  cgpa?: string;
-  percentage?: string;
-}
+// interface EducationData {
+//   _id: string;
+//   level: string;
+//   boardOrUniversity: string;
+//   course: string | null;          
+//   specialization?: string | null;  
+//   durationFrom: string | null;     
+//   durationTo: string | null;       
+//   marksPercentage?: number; 
+//   passingOutYear?: string;
+//   grade?: string;
+//   cgpa?: string;
+//   percentage?: string;
+// }
 
 
 //  Define the props interface for EducationList
 interface EducationListProps {
-  educationList: EducationData[];
+  educationList: Education[];
   onAdd: () => void;
-  onDelete: (data: EducationData) => void;
+  onDelete: (data: Education) => void;
 }
 
 export default function EducationList({

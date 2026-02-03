@@ -111,15 +111,17 @@ export const authSlice = createSlice({
       // Remove all auth cookies
       cookie.remove("token", { path: "/" });
       cookie.remove("userId", { path: "/" });
-      cookie.remove("userData", { path: "/" }); // Remove user data cookie
+      cookie.remove("userData", { path: "/" }); 
       
       state.isLogin = false;
       state.user = {};
     },
    check_token: (state) => {
       const token = cookie.get("token");
-      if (token !== null && token !== undefined) {
+       const userData = cookie.get("userData");
+      if (token !== null && token !== undefined && userData) {
         state.isLogin = true;
+        state.user = userData;
       }
     },
   },
@@ -153,23 +155,20 @@ export const authSlice = createSlice({
           // Set Token
           cookie.set("token", action.payload.token, {
             path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            secure: true,
           });
 
           // Set User ID
           cookie.set("userId", action.payload.user._id, {
             path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            secure: true,
           });
 
-          // Set Full User Data in Cookie (Replaces LocalStorage)
-          // react-cookie automatically stringifies objects
+          
+         
           cookie.set("userData", action.payload.user, {
             path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            secure: true,
           });
 
           state.isLogin = true;
@@ -189,22 +188,19 @@ export const authSlice = createSlice({
           // Set Token
           cookie.set("token", action.payload.token, {
             path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            secure: true,
           });
 
           // Set User ID
           cookie.set("userId", action.payload.user._id, {
             path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            secure: true,
           });
 
           // Set Full User Data in Cookie
           cookie.set("userData", action.payload.user, {
             path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            secure: true,
           });
 
           state.isLogin = true;

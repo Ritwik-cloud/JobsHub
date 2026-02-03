@@ -154,8 +154,11 @@ export default function RecruiterJobsPage() {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     setPage(1);
+  console.log(searchQuery, "search");
+
   };
 
+  
   const handleStatusChange = (value: string) => {
     setStatusFilter(value);
     setPage(1);
@@ -223,7 +226,7 @@ export default function RecruiterJobsPage() {
           <p className="text-muted-foreground mt-1">Manage all your job postings in one place</p>
         </div>
         <Button className="cursor-pointer bg-blue-700 hover:bg-blue-800" onClick={() => router.push("/recruiter/create")}>
-          <Plus className="mr-2 h-4 w-4" /> Post New Job
+          <Plus className=" h-4 w-4" />Post New Job
         </Button>
       </div>
 
@@ -314,11 +317,12 @@ export default function RecruiterJobsPage() {
           <Briefcase className="h-16 w-16 text-gray-300 mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No jobs found</h3>
           <p className="text-sm text-gray-500 mb-4">Try adjusting your filters or post a new job.</p>
-          <Button onClick={() => router.push("/recruiter/create")}>
+          <Button className="cursor-pointer bg-blue-700 hover:bg-blue-800" onClick={() => router.push("/recruiter/create")}>
             <Plus className="mr-2 h-4 w-4" /> Post Your First Job
           </Button>
         </div>
       )}
+      
 
       {/* Modal */}
       <JobDetailsModal job={jobDetails || null} isOpen={isModalOpen} onClose={handleCloseModal} />

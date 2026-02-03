@@ -142,13 +142,14 @@ function CandidateDashboard() {
     );
   }
 
-  // Safe destructuring
+  //  destructuring dashboard data
   const candidateDetail = (candidateDashboardData as any)?.candidateDetail;
   const applicationsCount = (candidateDashboardData as any)?.applicationsCount || 0;
   const acceptedApplicationsCount = (candidateDashboardData as any)?.acceptedApplicationsCount || 0;
   const pendingApplicationsCount = (candidateDashboardData as any)?.pendingApplicationsCount || 0;
   const totalRecommendedJobs = (candidateDashboardData as any)?.totalRecommendedJobs || 0;
   const recommendedJobs = (candidateDashboardData as any)?.recommendedJobs || [];
+
 
   return (
     <>
@@ -170,7 +171,7 @@ function CandidateDashboard() {
           </Avatar>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">
-              Welcome back, {candidateDetail?.name?.split(' ')[0]}! 👋
+              Welcome back, {candidateDetail?.name?.split(' ')[0]}! 
             </h1>
             <p className="text-muted-foreground">
               Ready to find your next opportunity?
@@ -251,7 +252,7 @@ function CandidateDashboard() {
               <Card key={index} className="hover:border-primary/50 transition-colors cursor-pointer">
                 <CardContent className="p-5">
                   <h4 className="font-bold text-lg mb-1">{job.title || "Software Engineer"}</h4>
-                  <p className="text-sm text-muted-foreground mb-3">{job.company || "Tech Corp"}</p>
+                  <p className="text-sm text-muted-foreground mb-3">{job.company?.name || "Tech Corp"}</p>
                   <div className="flex gap-2">
                     <span className="text-xs bg-secondary px-2 py-1 rounded-md">Full-time</span>
                     <span className="text-xs bg-secondary px-2 py-1 rounded-md">Remote</span>

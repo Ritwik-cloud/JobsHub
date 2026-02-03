@@ -3,45 +3,25 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { useCookies } from "react-cookie"; 
+import { useDispatch, useSelector } from "react-redux"; // 1. Import useSelector
 import { check_token, handleLoggedout } from "@/redux/slice/authSlice/authSlice"; 
 import NavProfile from "@/components/ui/com/navbar-profile/profile"; 
-import { AppDispatch } from "@/redux/store/store";
+import { AppDispatch, RootState } from "@/redux/store/store"; // 2. Import RootState
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  
-  // 1. Get cookies directly
-  const [cookies] = useCookies(['token', 'userData']);
-  
-  // 2. Local state to store user data (avoids hydration mismatch)
-  const [user, setUser] = useState<any>(null);
-  const [isLogin, setIsLogin] = useState(false);
 
-
-    useEffect(() => {
+  const { isLogin, user } = useSelector((state: RootState) => state.Auth); 
+  
+  useEffect(() => {
     dispatch(check_token());
   }, [dispatch]);
-  // 3. Read cookies on client-side mount
 
-  useEffect(() => {
-    if (cookies.token && cookies.userData) {
-      setIsLogin(true);
-      setUser(cookies.userData);
-    } else {
-      setIsLogin(false);
-      setUser(null);
-    }
-  }, [cookies.token, cookies.userData]); // Re-run if cookies change
-
-  // 4. Logout Handler
+  // 5. Logout Handler
   const onLogout = () => {
-    dispatch(handleLoggedout()); // Clears cookies via Redux
-    setIsLogin(false); // Update local state immediately
-    setUser(null);
+    dispatch(handleLoggedout()); 
     router.push("/auth/login");
     setMobileMenuOpen(false);
   };

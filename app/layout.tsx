@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sure Vacancy - Job Portal",
+  title: "JobsHub- Job Portal",
   description: "Find your dream job with the best companies",
   keywords: ["jobs", "recruitment", "career", "hiring"],
 };

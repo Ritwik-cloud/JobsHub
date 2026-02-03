@@ -10,26 +10,27 @@ import {
   Percent,
   Trash2 
 } from "lucide-react";
+import { Education } from "@/typeScript/candidate_interface/candidate.interface";
 
 export // Update your EducationList component interface
-interface EducationData {
-  _id: string;
-  level: string;
-  boardOrUniversity: string;
- course: string | null;          
-  specialization?: string | null;  
-  durationFrom: string;     
-  durationTo: string;       
-  marksPercentage?: number;  
-  passingOutYear?: string;
-  grade?: string;
-  cgpa?: string;
-  percentage?: string;
-}
+// interface EducationData {
+//   _id: string;
+//   level: string;
+//   boardOrUniversity: string;
+//  course: string | null;          
+//   specialization?: string | null;  
+//   durationFrom: string | null;     
+//   durationTo: string | null;       
+//   marksPercentage?: number;  
+//   passingOutYear?: string;
+//   grade?: string;
+//   cgpa?: string;
+//   percentage?: string;
+// }
 
 interface EducationCardProps {
-  data: EducationData;
-  onDelete?: (data: EducationData) => void;
+  data: Education;
+  onDelete?: (data: Education) => void;
 }
 
 export default function EducationCard({ data, onDelete }: EducationCardProps) {

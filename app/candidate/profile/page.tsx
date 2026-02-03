@@ -25,7 +25,7 @@ import {
 } from "@/redux/slice/candidateSlice/candidateSlice";
 import { AppDispatch, RootState } from "@/redux/store/store";
 
-// IMPORTS - UI Components (Statically Loaded)
+
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -35,10 +35,8 @@ import Header from "@/pages/header/header";
 
 // DYNAMIC IMPORTS - Main Components with Custom Loading States
 
-/**
- * ProfileDetails Component - Displays user's basic profile information
- * Loaded dynamically to reduce initial bundle size
- */
+//// ProfileDetails Component - Displays user's basic profile information
+ 
 const ProfileDetails = dynamic(
   () => import("@/components/ui/com/profileCard"),
   {
@@ -47,9 +45,8 @@ const ProfileDetails = dynamic(
   }
 );
 
-/**
- * ProfileSummaryCard Component - Shows professional summary
- */
+///  ProfileSummaryCard Component - Shows professional summary
+ 
 const ProfileSummaryCard = dynamic(
   () => import("@/components/ui/com/profileSummarycard"),
   {
@@ -58,17 +55,15 @@ const ProfileSummaryCard = dynamic(
   }
 );
 
-/**
- * SkillsCard Component - Displays user's technical skills
- */
+/// SkillsCard Component - Displays user's technical skills
+
 const SkillsCard = dynamic(() => import("@/components/ui/com/skillsCard"), {
   loading: () => <SkillsCardSkeleton />,
   ssr: false,
 });
 
-/**
- * EducationList Component - Shows educational background
- */
+//// EducationList Component - Shows educational background
+ 
 const EducationList = dynamic(
   () => import("@/components/ui/com/education/educationList"),
   {
@@ -77,9 +72,8 @@ const EducationList = dynamic(
   }
 );
 
-/**
- * ProjectCard Component - Displays user's projects
- */
+//// ProjectCard Component - Displays user's projects
+ 
 const ProjectCard = dynamic(
   () => import("@/components/ui/com/projects/projectCard"),
   {
@@ -88,9 +82,8 @@ const ProjectCard = dynamic(
   }
 );
 
-/**
- * CareerPreferenceCard Component - Shows job preferences
- */
+///  CareerPreferenceCard Component - Shows job preferences
+ 
 const CareerPreferenceCard = dynamic(
   () => import("@/components/ui/com/careerPreference/careerPreferenceCard"),
   {
@@ -101,10 +94,8 @@ const CareerPreferenceCard = dynamic(
 
 // DYNAMIC IMPORTS
 
-/**
- * EditProfileModal - Modal for editing profile details
- * Only loaded when user clicks edit button
- */
+/// EditProfileModal - Modal for editing profile details
+ 
 const EditProfileModal = dynamic(
   () =>
     import("@/components/ui/com/modal").then((mod) => ({
@@ -112,13 +103,12 @@ const EditProfileModal = dynamic(
     })),
   {
     ssr: false,
-    loading: () => null, // No loading state for modals
+    loading: () => null, 
   }
 );
 
-/**
- * EditSummaryModal - Modal for editing professional summary
- */
+// EditSummaryModal - Modal for editing professional summary
+ 
 const EditSummaryModal = dynamic(
   () =>
     import("@/components/ui/com/editSummaryModal").then((mod) => ({
@@ -130,9 +120,8 @@ const EditSummaryModal = dynamic(
   }
 );
 
-/**
- * EditSkillsModal - Modal for managing skills
- */
+///  EditSkillsModal - Modal for managing skills
+ 
 const EditSkillsModal = dynamic(
   () =>
     import("@/components/ui/com/editSkillsModal").then((mod) => ({
@@ -144,9 +133,8 @@ const EditSkillsModal = dynamic(
   }
 );
 
-/**
- * EducationAddModal - Modal for adding education entries
- */
+/// EducationAddModal - Modal for adding education entries
+ 
 const EducationAddModal = dynamic(
   () =>
     import("@/components/ui/com/education/educationAddModal").then((mod) => ({
@@ -158,9 +146,8 @@ const EducationAddModal = dynamic(
   }
 );
 
-/**
- * ProjectAddModal - Modal for adding project entries
- */
+/// ProjectAddModal - Modal for adding project entries
+ 
 const ProjectAddModal = dynamic(
   () =>
     import("@/components/ui/com/projects/projectAddModal").then((mod) => ({
@@ -172,9 +159,8 @@ const ProjectAddModal = dynamic(
   }
 );
 
-/**
- * CareerPreferenceModal - Modal for updating job preferences
- */
+/// CareerPreferenceModal - Modal for updating job preferences
+
 const CareerPreferenceModal = dynamic(
   () =>
     import("@/components/ui/com/careerPreference/careerPreferenceModal").then(
@@ -188,10 +174,8 @@ const CareerPreferenceModal = dynamic(
 
 // SKELETON LOADING COMPONENTS
 
-/**
- * ProfileDetailsSkeleton - Loading placeholder for profile details
- * Matches the exact layout of ProfileDetails component
- */
+/// ProfileDetailsSkeleton - Loading placeholder for profile details
+
 const ProfileDetailsSkeleton = () => (
   <Card className="w-full max-w-4xl shadow-lg border-0 bg-white/80 backdrop-blur-sm">
     <CardHeader className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-8">
@@ -252,9 +236,8 @@ const ProfileDetailsSkeleton = () => (
   </Card>
 );
 
-/**
- * SummaryCardSkeleton - Loading placeholder for summary section
- */
+/// SummaryCardSkeleton - Loading placeholder for summary section
+
 const SummaryCardSkeleton = () => (
   <Card className="w-full max-w-4xl">
     <CardHeader className="flex flex-row items-center justify-between">
@@ -269,9 +252,8 @@ const SummaryCardSkeleton = () => (
   </Card>
 );
 
-/**
- * SkillsCardSkeleton - Loading placeholder for skills section
- */
+/// SkillsCardSkeleton - Loading placeholder for skills section //
+
 const SkillsCardSkeleton = () => (
   <Card className="w-full max-w-4xl">
     <CardHeader className="flex flex-row items-center justify-between">
@@ -377,9 +359,8 @@ const ProfilePageSkeleton = () => (
 
 // TYPE DEFINITIONS
 
-/**
- * PreferenceData - Shape expected by the career preference modal
- */
+/// PreferenceData - Shape expected by the career preference modal
+ 
 interface PreferenceData {
   preferredIndustry: string;
   preferredJobCategory: string;
@@ -388,10 +369,9 @@ interface PreferenceData {
   preferredLocations: string[];
 }
 
-/**
- * ApiPreferenceData - Shape returned from the API/Redux
- * May contain nested objects that need to be flattened to IDs
- */
+//// ApiPreferenceData - Shape returned from the API/Redux
+/// May contain nested objects that need to be flattened to IDs
+ 
 interface ApiPreferenceData {
   preferredIndustry?: { _id: string; name: string } | string;
   preferredJobCategory?: { _id: string; name: string } | string;
@@ -475,22 +455,18 @@ function Profile() {
 
   // EFFECTS
 
-  /**
-   * Set mounted state on client side
-   * Prevents hydration mismatch errors
-   */
+  ////  Set mounted state on client side ///
+  
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  /**
-   * Fetch all profile data on component mount
-   * Runs once when component first loads
-   */
+  ///Fetch all profile data on component mount ///
+   
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        // Fetch all profile sections in parallel for better performance
+      
         await Promise.all([
           dispatch(candidateProfile()),
           dispatch(candidateProfileDetails()),
@@ -508,10 +484,9 @@ function Profile() {
 
   // STATIC DATA - Reference Lists
 
-  /**
-   * Reference lists for dropdowns and selections
-   * In production, these should come from API
-   */
+  //// Reference lists for dropdowns and selections ////
+  
+   
   const referenceLists = {
     industries: [
       { _id: "684063dc2da1edfbf0b16d15", name: "Information Technology" },
@@ -530,18 +505,16 @@ function Profile() {
     ],
   };
 
-  /**
-   * Educational courses list
-   */
+  // Educational courses list //
+   
   const coursesList = [
     { _id: "68616592b11e24cda89a25bf", name: "M.Tech" },
     { _id: "687b3e587572e3fc22a5917d", name: "MBA" },
     { _id: "6861661fb11e24cda89a25cf", name: "MCA" },
   ];
 
-  /**
-   * Specialization/Major list
-   */
+  // Specialization/Major list ///
+   
   const specializationsList = [
     { _id: "68619af4df47df50932eee78", name: "Computer Science" },
     { _id: "68619ae6df47df50932eee74", name: "Electronics" },
@@ -552,9 +525,8 @@ function Profile() {
     },
   ];
 
-  /**
-   * Available skills list for selection
-   */
+  // Available skills list for selection ///
+  
   const allSkillsList = [
     { _id: "684144750459de7cb39f6674", name: "JavaScript" },
     { _id: "6841487bc9c551d782ec8061", name: "HTML/CSS" },
@@ -578,20 +550,15 @@ function Profile() {
     { _id: "691c05569a43a4f6e58e3968", name: "REST API" },
   ];
 
-  // LOADING & ERROR STATES
+  // LOADING and ERROR STATES
 
-  /**
-   * Show full page skeleton while:
-   * - Component is not yet mounted (SSR)
-   * - Data is being loaded
-   */
+ 
   if (!mounted || isLoading) {
     return <ProfilePageSkeleton />;
   }
 
-  /**
-   * Handle case where profile data doesn't exist
-   */
+  ///  Handle case where profile data doesn't exist ///
+   
   if (!candidateProfileData) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -605,10 +572,9 @@ function Profile() {
 
   // DATA FORMATTING
 
-  /**
-   * Format profile data for display in ProfileDetails component
-   * Converts raw API data to user-friendly format
-   */
+  /// Format profile data for display in ProfileDetails component ///
+   
+  
   const formattedUserData = {
     name: candidateProfileData.name,
     email: candidateProfileData.email,
@@ -630,10 +596,9 @@ function Profile() {
     role: "Candidate",
   };
 
-  /**
-   * Format profile data for editing in modal
-   * Preserves original data structure for form submission
-   */
+  /// Format profile data for editing in modal ///
+  
+   
   const formatProfileData =
     candidateProfileData && candidateProfileData.profile
       ? {
@@ -681,10 +646,8 @@ function Profile() {
 
   // EVENT HANDLERS - Data Updates
 
-  /**
-   * Save updated profile details
-   * Refreshes profile data after successful update
-   */
+  //Save updated profile details///
+   
   const handleSaveProfileDetails = async (formData: any) => {
     try {
       await dispatch(candidateProfileDetailsUpdate(formData)).unwrap();
@@ -696,9 +659,8 @@ function Profile() {
     }
   };
 
-  /**
-   * Update professional summary
-   */
+  /// Update professional summary ///
+   
   const handleSummaryUpdate = async (formData: any) => {
     try {
       await dispatch(candidateProfileSummaryUpdate(formData))
@@ -709,10 +671,9 @@ function Profile() {
     }
   };
 
-  /**
-   * Update skills list
-   * Accepts array of skill IDs
-   */
+  /// Update skills list ///
+   
+   
   const handleSkillsUpdate = async (skillIds: string[]) => {
     try {
       await dispatch(candidateskillsUpdate({ skills: skillIds })).unwrap();
@@ -722,10 +683,9 @@ function Profile() {
     }
   };
 
-  /**
-   * Add new education entry
-   * Shows loading state during operation
-   */
+  // Add new education ///
+  
+  
   const handleAddEducation = async (formData: any) => {
     setLocalLoading(true);
     try {
@@ -740,9 +700,8 @@ function Profile() {
     }
   };
 
-  /**
-   * Delete education entry
-   */
+  // Delete education  //
+
   const handleDeleteEducation = async (eduItem: any) => {
     try {
       await dispatch(candidateDeleteEducation(eduItem._id))
@@ -753,9 +712,7 @@ function Profile() {
     }
   };
 
-  /**
-   * Add new project entry
-   */
+  // Add new project entry ////
   const handleAddProject = async (formData: any) => {
     setLocalLoading(true);
     try {
@@ -770,9 +727,8 @@ function Profile() {
     }
   };
 
-  /**
-   * Delete project entry
-   */
+  ///  Delete project entry //
+
   const handleProjectDelete = async (project: any) => {
     try {
       await dispatch(candidateDeleteProject(project._id))
@@ -783,10 +739,8 @@ function Profile() {
     }
   };
 
-  /**
-   * Save career preferences
-   * Updates backend and refreshes local state
-   */
+  /// Save career preferences ///
+   
   const handleSavePreferences = async (updatedData: PreferenceData) => {
     try {
       await dispatch(updateCareerpreference(updatedData))

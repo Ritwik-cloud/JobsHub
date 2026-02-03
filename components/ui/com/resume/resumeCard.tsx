@@ -14,7 +14,7 @@ interface ResumeCardProps {
   onEdit?: () => void;
 }
 
-export default function ResumeCard({ resume, onEdit }: ResumeCardProps) {
+export default function  ResumeCard({ resume, onEdit }: ResumeCardProps) {
   const handleView = () => {
     if (!resume?.path) return;
     const resumeUrl = `http://localhost:3005/${resume.path}`;

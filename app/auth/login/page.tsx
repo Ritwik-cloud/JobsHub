@@ -103,7 +103,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex bg-neutral-100">
       {/* Left Side - SVG Illustration */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-blue-800 items-center justify-center p-12">
+      <div className="hidden lg:flex lg:w-1/2 bg-linear-to-br from-blue-600 to-blue-800 items-center justify-center p-12">
         <div className="max-w-lg">
           <svg
             viewBox="0 0 500 500"
@@ -200,6 +200,7 @@ export default function LoginPage() {
 
             {/* Candidate Login Form */}
             <TabsContent value="candidate">
+            
               <form onSubmit={handleSubmit(handleCandidateLogin)}>
                 <Card>
                   <CardHeader>
@@ -258,6 +259,13 @@ export default function LoginPage() {
                   </CardFooter>
                 </Card>
               </form>
+                <div className="bg-slate-50 dark:bg-slate-800 p-3 rounded-md text-sm border border-slate-200 dark:border-slate-700">
+            <p className="font-semibold mb-1 text-slate-700 dark:text-slate-200">Demo Credentials:</p>
+            <div className="flex flex-col space-y-1 text-slate-600 dark:text-slate-400">
+                <p><span className="font-medium">Email:</span> bikash54@yopmail.com</p>
+                <p><span className="font-medium">Password:</span> bikash@123</p>
+            </div>
+        </div>
             </TabsContent>
 
             {/* Recruiter Login Form */}
@@ -321,6 +329,13 @@ export default function LoginPage() {
                   </CardFooter>
                 </Card>
               </form>
+                 <div className="bg-slate-50 dark:bg-slate-800 p-3 rounded-md text-sm border border-slate-200 dark:border-slate-700">
+            <p className="font-semibold mb-1 text-slate-700 dark:text-slate-200">Demo Credentials:</p>
+            <div className="flex flex-col space-y-1 text-slate-600 dark:text-slate-400">
+                <p><span className="font-medium">Email:</span> jatin56@yopmail.com</p>
+                <p><span className="font-medium">Password:</span> jatin@123</p>
+            </div>
+        </div>
             </TabsContent>
           </Tabs>
 

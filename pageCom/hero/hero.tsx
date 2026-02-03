@@ -122,7 +122,7 @@ const Hero = () => {
                       asChild
                       className="px-6 py-6 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1"
                     >
-                      <Link href={`/dashboard/${user?.role || 'candidate'}`}>
+                      <Link href={`/${user?.role}/dashboard`}>
                         Go to Dashboard
                       </Link>
                     </Button>

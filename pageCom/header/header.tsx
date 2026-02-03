@@ -80,13 +80,13 @@ function Header() {
                 Home
               </Link>
               <Link
-                href="/pages/contact"
+                href="/page/contact"
                 className="text-sm font-medium text-gray-700 rounded-lg px-4 py-2 hover:text-gray-800"
               >
                 Contact Us
               </Link>
               <Link
-                href="/pages/about"
+                href="/page/about"
                 className="text-sm font-medium text-gray-700 rounded-lg px-4 py-2 hover:text-gray-800"
               >
                 About
@@ -149,14 +149,14 @@ function Header() {
                 Home
               </Link>
               <Link
-                href="/pages/contact"
+                href="/page/contact"
                 className="px-4 py-3 text-base font-medium text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact Us
               </Link>
               <Link
-                href="/pages/about"
+                href="/page/about"
                 className="px-4 py-3 text-base font-medium text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >

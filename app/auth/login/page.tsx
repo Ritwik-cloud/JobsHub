@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react"; // 1. Import Suspense
 import {
   Card,
   CardContent,
@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Briefcase, User, Loader2 } from "lucide-react";
+import { Briefcase, User, Loader2, Loader } from "lucide-react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -36,7 +36,8 @@ export const Schema = yup.object({
     .required("Password is required"),
 });
 
-export default function LoginPage() {
+// 2. Rename existing component to 'LoginContent' and remove 'export default'
+function LoginContent() {
   const [activeTab, setActiveTab] = useState("candidate");
   const dispatch: AppDispatch = useDispatch();
   const router = useRouter();
@@ -48,11 +49,10 @@ export default function LoginPage() {
 
     if (toastType === "login-required") {
       toast.error("First Login", {
-        id: "login-required", 
+        id: "login-required",
       });
     }
   }, [searchParams]);
-
   
   const {
     register,
@@ -342,5 +342,14 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// 3. Export the wrapper component as default
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen items-center justify-center"><Loader/></div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

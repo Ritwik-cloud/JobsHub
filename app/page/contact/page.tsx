@@ -1,8 +1,9 @@
 "use client";
 import React from 'react';
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from 'lucide-react';
-import Header from '@/pages/header/header';
-import Footer from '@/pages/footer/footer';
+import Header from '@/pageCom/header/header';
+import Footer from '@/pageCom/footer/footer';
+
 
 const ContactUs = () => {
   return (

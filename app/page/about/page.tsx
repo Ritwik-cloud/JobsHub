@@ -2,8 +2,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { Target, Users, Shield, Zap, TrendingUp, Globe } from 'lucide-react';
-import Header from '@/pages/header/header';
-import Footer from '@/pages/footer/footer';
+import Header from '@/pageCom/header/header';
+import Footer from '@/pageCom/footer/footer';
+
 
 const AboutUs = () => {
   return (

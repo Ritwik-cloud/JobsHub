@@ -1,9 +1,9 @@
-import CallToAction from "@/pages/callToAction/callToAction";
-import FeaturedJobs from "@/pages/featureJob/featureJob";
-import Footer from "@/pages/footer/footer";
-import Header from "@/pages/header/header";
-import Hero from "@/pages/hero/hero";
-import Testimonials from "@/pages/testimonials/testimonials";
+
+import CallToAction from "@/pageCom/callToAction/callToAction";
+import FeaturedJobs from "@/pageCom/featureJob/featureJob";
+import Footer from "@/pageCom/footer/footer";
+import Hero from "@/pageCom/hero/hero";
+import Testimonials from "@/pageCom/testimonials/testimonials";
 import Image from "next/image";
 
 export default function Home() {

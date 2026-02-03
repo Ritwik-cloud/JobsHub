@@ -134,11 +134,11 @@ interface EditJobFormData {
   experienceLevel: string;
   minimumExperience: number;
   maximumExperience: number;
-  minimumSalary?: number;
-  maximumSalary?: number;
+  minimumSalary: number;
+  maximumSalary: number;
   skillsRequired: string[];
   applicationDeadline: Date;
-  vacancies?: number;
+  vacancies: number;
 }
 
 // Skeleton Component

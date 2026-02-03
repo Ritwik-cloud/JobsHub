@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function proxy(request: NextRequest) {  
+export function proxy(request: NextRequest) {
   const token = request.cookies.get("token");
 
   if (!token) {
     const loginUrl = new URL("/auth/login", request.url);
+
     loginUrl.searchParams.set("toast", "login-required");
+
     return NextResponse.redirect(loginUrl);
   }
 
@@ -19,3 +21,4 @@ export const config = {
     "/recruiter/:path*",
   ],
 };
+

@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux"; // 1. Import useSelector
+import { useDispatch, useSelector } from "react-redux"; 
 import { check_token, handleLoggedout } from "@/redux/slice/authSlice/authSlice"; 
 import NavProfile from "@/components/ui/com/navbar-profile/profile"; 
-import { AppDispatch, RootState } from "@/redux/store/store"; // 2. Import RootState
+import { AppDispatch, RootState } from "@/redux/store/store"; 
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

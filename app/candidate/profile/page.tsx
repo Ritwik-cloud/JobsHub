@@ -31,7 +31,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import ResumeCard from "@/components/ui/com/resume/resumeCard";
 import UploadResumeModal from "@/components/ui/com/resume/uploadResume";
-import Header from "@/pages/header/header";
+import Header from "@/pageCom/header/header";
 
 // DYNAMIC IMPORTS - Main Components with Custom Loading States
 

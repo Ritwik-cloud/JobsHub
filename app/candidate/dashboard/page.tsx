@@ -17,7 +17,8 @@ import {
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
-import Header from "@/pages/header/header";
+import Header from "@/pageCom/header/header";
+
 
 //  Stats Card Skeleton
 const StatsCardSkeleton = () => (

@@ -26,7 +26,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Cookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store/store";
 import { recruiterProfile } from "@/redux/slice/recruiterSlice/recruiterSlice";
@@ -37,7 +37,6 @@ const navigation = [
   { name: "Company", href: "/recruiter/company", icon: Users },
   { name: "Jobs", href: "/recruiter/jobs", icon: Briefcase },
   { name: "Recruiters", href: "/recruiter/manage-recruiter", icon: Calendar },
- 
 ];
 
 export default function RecruiterDashboardLayout({
@@ -50,28 +49,29 @@ export default function RecruiterDashboardLayout({
   const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
   const cookie = new Cookies();
+  // Using useCookies hook
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "token",
+    "userId",
+    "userData",
+  ]);
 
 
   const { recruiterProfileData } = useSelector(
-    (state: RootState) => state.Recruiter
+    (state: RootState) => state.Recruiter,
   ) as { recruiterProfileData: RecruiterProfileData };
 
   //  Fetch profile on mount
   useEffect(() => {
     const fetchData = async () => {
-           try {
-             // Removed the artificial delay - not needed in production
-             await  dispatch(recruiterProfile());
+      try {
+        await dispatch(recruiterProfile());
+      } catch (err) {
+        console.error("Profile fetch failed:", err);
+      }
+    };
 
-     
-             //  Moved console.log outside Promise.all
-            //  console.log("Skills data loaded:", candidateSkillsData);
-           } catch (err) {
-             console.error("Profile fetch failed:", err);
-           }
-         };
-     
-         fetchData();
+    fetchData();
   }, [dispatch]);
 
   //  Extract profile info
@@ -82,7 +82,6 @@ export default function RecruiterDashboardLayout({
   const profilePicture = `http://localhost:3005/${profileData.profilePicture}`;
 
   console.log(profilePicture, "profilePic");
-  
 
   //  Get initials for avatar fallback
   const getInitials = (name: string) => {
@@ -94,10 +93,13 @@ export default function RecruiterDashboardLayout({
       .slice(0, 2);
   };
 
+  
   const handleLogout = () => {
-    // Clear auth tokens
-    cookie.remove("token");
-    cookie.remove("userId");
+    removeCookie("token", { path: "/" });
+    removeCookie("userId", { path: "/" });
+    removeCookie("userData", { path: "/" });
+
+    localStorage.clear();
     router.push("/auth/login");
   };
 
@@ -166,11 +168,13 @@ export default function RecruiterDashboardLayout({
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">{name}</p>
+              <p className="text-sm font-medium text-gray-900 truncate">
+                {name}
+              </p>
               <p className="text-xs text-gray-500 truncate">{designation}</p>
             </div>
           </div>
-          
+
           {/* Logout */}
           <Button
             variant="ghost"
@@ -184,24 +188,21 @@ export default function RecruiterDashboardLayout({
       </aside>
 
       {/* Main content */}
-    <div className="lg:pl-64">  
-  {/* Top header */}
-  <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-4 sm:px-6 lg:px-8">
-    {/* Mobile menu button - Left side */}
-    <Button
-      variant="ghost"
-      size="icon"
-      className="lg:hidden"
-      onClick={() => setSidebarOpen(true)}
-    >
-      <Menu className="h-5 w-5" />
-    </Button>
+      <div className="lg:pl-64">
+        {/* Top header */}
+        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-4 sm:px-6 lg:px-8">
+          {/* Mobile menu button - Left side */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
 
-   
-  
-
-    {/* Search - Commented out */}
-    {/* <div className="flex-1 max-w-md">
+          {/* Search - Commented out */}
+          {/* <div className="flex-1 max-w-md">
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
         <Input
@@ -212,52 +213,61 @@ export default function RecruiterDashboardLayout({
       </div>
     </div> */}
 
-    {/* Right section - Notifications and User menu */}
-    <div className="flex items-center gap-2 sm:gap-4 ml-auto">
-      {/* Notifications */}
-      <Button variant="ghost" size="icon" className="relative">
-        <Bell className="h-5 w-5" />
-        <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full" />
-      </Button>
+          {/* Right section - Notifications and User menu */}
+          <div className="flex items-center gap-2 sm:gap-4 ml-auto">
+            {/* Notifications */}
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full" />
+            </Button>
 
-      {/* User menu */}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-            <Avatar>
-              <AvatarImage src={profilePicture} alt={name} />
-              <AvatarFallback className="bg-blue-600 text-white">
-                {getInitials(name)}
-              </AvatarFallback>
-            </Avatar>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
-          <DropdownMenuLabel>
-            <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium">{name}</p>
-              <p className="text-xs text-muted-foreground">{email}</p>
-              <p className="text-xs text-blue-600 font-medium">{designation}</p>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => router.push("/recruiter/profile")}>
-            <Settings className="mr-2 h-4 w-4" />
-            Profile Settings
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={handleLogout} className="text-red-600">
-            <LogOut className="mr-2 h-4 w-4" />
-            Logout
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  </header>
+            {/* User menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="relative h-10 w-10 rounded-full"
+                >
+                  <Avatar>
+                    <AvatarImage src={profilePicture} alt={name} />
+                    <AvatarFallback className="bg-blue-600 text-white">
+                      {getInitials(name)}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium">{name}</p>
+                    <p className="text-xs text-muted-foreground">{email}</p>
+                    <p className="text-xs text-blue-600 font-medium">
+                      {designation}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => router.push("/recruiter/profile")}
+                >
+                  <Settings className="mr-2 h-4 w-4" />
+                  Profile Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  className="text-red-600"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
 
-  {/* Page content */}
-  <main className="p-4 sm:p-6 lg:p-8">{children}</main>
-</div>
-
+        {/* Page content */}
+        <main className="p-4 sm:p-6 lg:p-8">{children}</main>
+      </div>
     </div>
   );
 }

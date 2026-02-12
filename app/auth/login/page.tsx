@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react"; // 1. Import Suspense
+import { useEffect, useState, Suspense } from "react"; 
 import {
   Card,
   CardContent,

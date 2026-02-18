@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { memo } from "react";
 import {
   Mail,
   Phone,
@@ -41,7 +41,7 @@ interface ProfileDetailsProps {
   onChangeProfilePicture: () => void;
 }
 
-export default function ProfileDetails({
+ function ProfileDetails({
   userData,
   onEditProfile,
   onChangeProfilePicture,
@@ -188,3 +188,5 @@ function InfoItem({ icon, label, value }: { icon: React.ReactNode; label: string
     </div>
   );
 }
+
+export default memo(ProfileDetails)

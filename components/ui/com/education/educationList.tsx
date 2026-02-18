@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, Plus } from "lucide-react";
 import EducationCard from "./educationCard";
 import { Education } from "@/typeScript/candidate_interface/candidate.interface";
+import { memo } from "react";
 
 // Define the complete EducationData interface
 
@@ -30,7 +31,7 @@ interface EducationListProps {
   onDelete: (data: Education) => void;
 }
 
-export default function EducationList({
+ function EducationList({
   educationList,
   onAdd,
   onDelete,
@@ -79,3 +80,4 @@ export default function EducationList({
     </div>
   );
 }
+export default memo(EducationList)

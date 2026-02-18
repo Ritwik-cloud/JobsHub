@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Edit, Upload } from "lucide-react";
+import { memo } from "react";
 
 interface Resume {
   originalName: string;
@@ -14,7 +15,7 @@ interface ResumeCardProps {
   onEdit?: () => void;
 }
 
-export default function  ResumeCard({ resume, onEdit }: ResumeCardProps) {
+ function  ResumeCard({ resume, onEdit }: ResumeCardProps) {
   const handleView = () => {
     if (!resume?.path) return;
     const resumeUrl = `http://localhost:3005/${resume.path}`;
@@ -86,3 +87,4 @@ export default function  ResumeCard({ resume, onEdit }: ResumeCardProps) {
     </Card>
   );
 }
+export default memo(ResumeCard)

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +17,7 @@ interface UploadResumeModalProps {
   onSave: (formData: FormData) => Promise<void>; 
 }
 
-export default function UploadResumeModal({ 
+ function UploadResumeModal({ 
   open, 
   onOpenChange, 
   onSave 
@@ -250,3 +250,4 @@ export default function UploadResumeModal({
     </Dialog>
   );
 }
+export default memo(UploadResumeModal)

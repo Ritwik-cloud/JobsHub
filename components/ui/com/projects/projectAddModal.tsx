@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -46,7 +46,7 @@ interface ProjectAddModalProps {
   isLoading?: boolean;
 }
 
-export function ProjectAddModal({
+ function ProjectAddModal({
   open,
   onOpenChange,
   initialData,
@@ -193,3 +193,4 @@ export function ProjectAddModal({
     </Dialog>
   );
 }
+export default memo(ProjectAddModal)

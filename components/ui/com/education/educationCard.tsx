@@ -11,6 +11,7 @@ import {
   Trash2 
 } from "lucide-react";
 import { Education } from "@/typeScript/candidate_interface/candidate.interface";
+import { memo } from "react";
 
 export // Update your EducationList component interface
 // interface EducationData {
@@ -33,7 +34,7 @@ interface EducationCardProps {
   onDelete?: (data: Education) => void;
 }
 
-export default function EducationCard({ data, onDelete }: EducationCardProps) {
+ function EducationCard({ data, onDelete }: EducationCardProps) {
   return (
     <Card className="w-full hover:shadow-md transition-shadow duration-300 border-l-4 border-l-primary relative group">
       
@@ -112,3 +113,4 @@ export default function EducationCard({ data, onDelete }: EducationCardProps) {
     </Card>
   );
 }
+export default memo(EducationCard)

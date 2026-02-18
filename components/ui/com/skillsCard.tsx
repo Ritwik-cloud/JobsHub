@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Wrench, Code2, Edit } from "lucide-react";
+import { memo } from "react";
 
 // Define skill type
 interface Skill {
@@ -29,7 +30,7 @@ interface SkillsCardProps {
   onEdit: () => void;
 }
 
-export default function SkillsCard({ data, onEdit }: SkillsCardProps) {
+ function SkillsCard({ data, onEdit }: SkillsCardProps) {
   // Safe fallback and type-safe data extraction
   const getSkills = (data: SkillsData): Skill[] => {
     if (!data) return [];
@@ -109,3 +110,4 @@ export default function SkillsCard({ data, onEdit }: SkillsCardProps) {
     </Card>
   );
 }
+export default memo(SkillsCard)

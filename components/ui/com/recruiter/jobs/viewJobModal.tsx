@@ -28,6 +28,7 @@ import {
   AlertCircle,
   XCircle,
 } from "lucide-react";
+import { memo } from "react";
 
 interface JobDetailsModalProps {
   job: any;
@@ -35,8 +36,8 @@ interface JobDetailsModalProps {
   onClose: () => void;
 }
 
-export function JobDetailsModal({ job, isOpen, onClose }: JobDetailsModalProps) {
-  const router = useRouter(); // ✅ Initialize router
+ function JobDetailsModal({ job, isOpen, onClose }: JobDetailsModalProps) {
+  const router = useRouter(); //  Initialize router
 
   if (!job) return null;
 
@@ -421,3 +422,4 @@ export function JobDetailsModal({ job, isOpen, onClose }: JobDetailsModalProps) 
     </Dialog>
   );
 }
+export default memo(JobDetailsModal)

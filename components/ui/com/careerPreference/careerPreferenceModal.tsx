@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Dialog,
@@ -63,7 +63,7 @@ const WORK_MODES = [
   { id: "hybrid", label: "Hybrid" },
 ] as const;
 
-export function CareerPreferenceModal({
+ function CareerPreferenceModal({
   open,
   onOpenChange,
   initialData,
@@ -420,3 +420,5 @@ export function CareerPreferenceModal({
     </Dialog>
   );
 }
+
+export default memo(CareerPreferenceModal)

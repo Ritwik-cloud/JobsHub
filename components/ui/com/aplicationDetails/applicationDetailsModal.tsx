@@ -24,6 +24,7 @@ import {
   FileText,
   Loader2,
 } from "lucide-react";
+import { memo } from "react";
 
 interface ApplicationDetailsModalProps {
   applicationDetails: any;
@@ -32,7 +33,7 @@ interface ApplicationDetailsModalProps {
   onClose: () => void;
 }
 
-export function ApplicationDetailsModal({
+ function ApplicationDetailsModal({
   applicationDetails,
   isLoading,
   isOpen,
@@ -380,3 +381,5 @@ export function ApplicationDetailsModal({
     </Dialog>
   );
 }
+
+export default memo(ApplicationDetailsModal)

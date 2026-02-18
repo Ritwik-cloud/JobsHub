@@ -28,7 +28,7 @@ import {
 } from "lucide-react";
 import toast from "react-hot-toast";
 
-// ✅ Fixed Validation Schema - Make optional fields properly optional
+//  Fixed Validation Schema - Make optional fields properly optional
 const companySchema = yup.object({
   name: yup
     .string()
@@ -42,13 +42,13 @@ const companySchema = yup.object({
   website: yup
     .string()
     .url("Please enter a valid URL (e.g., https://example.com)")
-    .optional() // ✅ Changed from nullable + transform
-    .default(""), // ✅ Add default
+    .optional() //  Changed from nullable + transform
+    .default(""), //  Add default
   description: yup
     .string()
     .max(500, "Description must not exceed 500 characters")
-    .optional() // ✅ Changed from nullable + transform
-    .default(""), // ✅ Add default
+    .optional() //  Changed from nullable + transform
+    .default(""), //  Add default
 });
 
 type CompanyFormData = yup.InferType<typeof companySchema>;

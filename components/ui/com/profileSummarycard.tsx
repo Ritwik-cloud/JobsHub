@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Edit, FileText } from "lucide-react";
+import { memo } from "react";
 
 // Define the summary data type
 type SummaryData = string | { profileSummary?: string; summary?: string } | null | undefined;
@@ -18,7 +19,7 @@ interface ProfileSummaryCardProps {
   onEdit: () => void;
 }
 
-export default function ProfileSummaryCard({ data, onEdit }: ProfileSummaryCardProps) {
+ function ProfileSummaryCard({ data, onEdit }: ProfileSummaryCardProps) {
   // Helper function to extract summary text
   const getSummaryText = (data: SummaryData): string | null => {
     if (!data) return null;
@@ -82,3 +83,4 @@ export default function ProfileSummaryCard({ data, onEdit }: ProfileSummaryCardP
     </Card>
   );
 }
+export default memo(ProfileSummaryCard)

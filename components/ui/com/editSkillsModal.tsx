@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { X, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,7 +28,7 @@ interface EditSkillsModalProps {
   skillsList?: Skill[]; 
 }
 
-export function EditSkillsModal({ 
+ function EditSkillsModal({ 
   open, 
   onOpenChange, 
   initialData, 
@@ -165,3 +165,4 @@ export function EditSkillsModal({
     </Dialog>
   );
 }
+export default memo(EditSkillsModal)

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@/components/ui/button";
@@ -81,7 +81,7 @@ interface EditProfileModalProps {
   onSave: (data: UserFormData) => void;
 }
 
-export function EditProfileModal({ 
+ function EditProfileModal({ 
   open, 
   onOpenChange, 
   data, 
@@ -292,3 +292,4 @@ export function EditProfileModal({
     </Dialog>
   );
 }
+export default memo(EditProfileModal)

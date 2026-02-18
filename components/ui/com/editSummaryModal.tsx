@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Edit } from "lucide-react";
 
 // 1. Define Validation Schema
 const summarySchema = yup.object().shape({
@@ -35,7 +36,7 @@ interface EditSummaryModalProps {
   onSave: (data: SummaryFormData) => void;
 }
 
-export function EditSummaryModal({ 
+ function EditSummaryModal({ 
   open, 
   onOpenChange, 
   initialData, 
@@ -135,3 +136,4 @@ export function EditSummaryModal({
     </Dialog>
   );
 }
+export default memo(EditSummaryModal)

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import { createPortal } from 'react-dom'; // 1. Import createPortal
 import { LogOut, ChevronDown, User, Settings } from 'lucide-react';
 import Link from 'next/link';
@@ -133,4 +133,4 @@ const NavProfile: React.FC<ProfileProps> = ({ name, email, role, logOut }) => {
   );
 };
 
-export default NavProfile;
+export default memo(NavProfile);

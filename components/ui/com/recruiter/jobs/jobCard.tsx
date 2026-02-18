@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -34,7 +34,7 @@ interface JobCardProps {
   onStatusToggle?: (jobId: string, newStatus: string) => void;
 }
 
-export function JobCard({ job, onEdit, onDelete, onStatusToggle, onView }: JobCardProps) {
+ function JobCard({ job, onEdit, onDelete, onStatusToggle, onView }: JobCardProps) {
   const router = useRouter();
   const [isToggling, setIsToggling] = useState(false);
 
@@ -325,3 +325,4 @@ export function JobCard({ job, onEdit, onDelete, onStatusToggle, onView }: JobCa
     </Card>
   );
 }
+export default memo(JobCard)

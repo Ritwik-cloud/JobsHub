@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -82,7 +82,7 @@ interface EducationAddModalProps {
   specializationsList?: OptionItem[]; 
 }
 
-export function EducationAddModal({
+ function EducationAddModal({
   open,
   onOpenChange,
   initialData,
@@ -338,3 +338,5 @@ export function EducationAddModal({
     </Dialog>
   );
 }
+
+export default memo(EducationAddModal)

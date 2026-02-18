@@ -10,6 +10,7 @@ import {
   Pencil,
   Plus
 } from "lucide-react";
+import { memo } from "react";
 
 // 1. Type Definition
 export interface ProjectData {
@@ -26,7 +27,7 @@ interface ProjectCardProps {
   onDelete?: (project: ProjectData) => void;
 }
 
-export default function ProjectCard({ data, onAdd, onDelete }: ProjectCardProps) {
+ function ProjectCard({ data, onAdd, onDelete }: ProjectCardProps) {
   return (
     <div className="w-full max-w-5xl space-y-4">
       {/* Header Section */}
@@ -119,3 +120,5 @@ export default function ProjectCard({ data, onAdd, onDelete }: ProjectCardProps)
     </div>
   );
 }
+
+export default memo(ProjectCard)

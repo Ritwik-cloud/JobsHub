@@ -12,6 +12,7 @@ import {
   Pencil,
   Edit
 } from "lucide-react";
+import { memo } from "react";
 
 //  Updated to match API response structure
 interface Location {
@@ -63,7 +64,7 @@ interface CareerPreferenceCardProps {
   onEdit?: () => void;
 }
 
-export default function CareerPreferenceCard({ 
+ function CareerPreferenceCard({ 
   data, 
   references, 
   onEdit 
@@ -257,3 +258,5 @@ export default function CareerPreferenceCard({
     </div>
   );
 }
+
+export default memo(CareerPreferenceCard)

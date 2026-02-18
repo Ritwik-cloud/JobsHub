@@ -26,7 +26,7 @@ import {
   X,
   Loader2,
 } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, memo } from "react";
 
 // ✅ Validation Schema
 const jobSchema = yup.object({
@@ -98,7 +98,7 @@ interface CreateJobFormProps {
   onSubmit: (data: JobFormData) => Promise<void>;
 }
 
-export function CreateJobForm({
+ function CreateJobForm({
   locations,
   industries,
   jobCategories,
@@ -108,7 +108,7 @@ export function CreateJobForm({
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
-  // ✅ FIX 1: Remove duplicate skills using useMemo
+  //  FIX 1: Remove duplicate skills using useMemo
   const uniqueSkills = useMemo(() => {
     return Array.from(
       new Map(skills.map((skill) => [skill.id, skill])).values()
@@ -121,7 +121,7 @@ export function CreateJobForm({
     control,
     setValue,
     watch,
-    reset, // ✅ Add reset function
+    reset, //  Add reset function
     formState: { errors, isSubmitting },
   } = useForm<JobFormData>({
     resolver: yupResolver(jobSchema),
@@ -171,7 +171,7 @@ export function CreateJobForm({
   const getSkillName = (id: string) =>
     uniqueSkills.find((s) => s.id === id)?.name || id;
 
-  // ✅ Wrap onSubmit to reset form after success
+  //  Wrap onSubmit to reset form after success
   const handleFormSubmit = async (data: JobFormData) => {
     try {
       await onSubmit(data);
@@ -682,3 +682,5 @@ export function CreateJobForm({
     </form>
   );
 }
+
+export default memo(CreateJobForm)

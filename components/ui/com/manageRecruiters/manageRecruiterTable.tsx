@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
   Table,
   TableBody,
@@ -43,7 +43,7 @@ interface ManageRecruitersTableProps {
   onToggleActive?: (id: string, current: boolean) => void;
 }
 
-export function ManageRecruitersTable({
+ function ManageRecruitersTable({
   data,
   onView,
   onToggleActive,
@@ -278,3 +278,4 @@ export function ManageRecruitersTable({
     </div>
   );
 }
+export default memo(ManageRecruitersTable)

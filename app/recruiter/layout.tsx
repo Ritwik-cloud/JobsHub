@@ -99,7 +99,7 @@ export default function RecruiterDashboardLayout({
     removeCookie("userId", { path: "/" });
     removeCookie("userData", { path: "/" });
 
-    localStorage.clear();
+    
     router.push("/auth/login");
   };
 
